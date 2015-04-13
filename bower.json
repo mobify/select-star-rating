@@ -1,0 +1,33 @@
+{
+  "name": "stencil-star-rating",
+  "version": "0.0.0",
+  "description": "Star rating identifies the rate of selected item",
+  "authors": [
+    "Mobify"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mobify/stencil-star-rating.git"
+  },
+  "keywords": [
+    "mobify",
+    "components",
+    "patterns"
+  ],
+  "license": "MIT",
+  "main": [
+    "src/_style.scss",
+    "src/template.dust",
+    "src/schema.js",
+    "src/ui.js"
+  ],
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "Gruntfile.js",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}

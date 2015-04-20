@@ -1,7 +1,7 @@
-// Stencil Star Rating
+// Stencil Rating Scale
 // ===
 //
-// Component description
+// A configurable likert scale.
 
 
 // Dependencies
@@ -10,15 +10,143 @@
 // Example: @import 'stencil-example/src/style';
 
 
+
 // Configurable variables
 // ---
+//
+// 1. Number of stars in the rating scale
 
-$star-rating__example: some-value;
+$rating-scale__count: 5 !default; // 1
+$rating-scale__increment: 0.25 !default; // 2
+
+$rating-scale__font-path: '/assets/fonts/' !default;
+$rating-scale__font: 'rating-scale__font' !default;
+
+$rating-scale__graphic: '\e999' !default;
+$rating-scale__graphic-color: #f8ca00 !default;
+$rating-scale__icon-size: 36px;
 
 
-// Star Rating
+
+@font-face {
+    font-family: $rating-scale__font;
+    src: url('#{$rating-scale__font-path}scale-graphic.eot') format('embedded-opentype'),
+         url('#{$rating-scale__font-path}scale-graphic.woff') format('woff'),
+         url('#{$rating-scale__font-path}scale-graphic.ttf') format('truetype'),
+         url('#{$rating-scale__font-path}scale-graphic.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+// Rating Scale
 // ---
+//
+//
 
-.c-star-rating {
+.c-scale {
+    color: #ccc;
+    text-align: center;
+}
 
+
+// Scale Item
+// ---
+//
+// 1. Make the height, width and font-size the same so that no edges bleed through
+// 2. Set z-index: 2 so that filled stars sit on top of their unfilled background
+
+.c-scale__item {
+    position: relative;
+
+    display: inline-block;
+    width: $rating-scale__icon-size; // 1
+    height: $rating-scale__icon-size; // 1
+
+    font-family: $rating-scale__font;
+    font-size: $rating-scale__icon-size; // 1
+    line-height: 1;
+
+    &:before,
+    &:after {
+        content: $rating-scale__graphic;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        display: block;
+        overflow: hidden;
+        width: 0;
+        height: 100%;
+
+        line-height: 1;
+    }
+
+
+    &:before {
+        width: 100%;
+    }
+
+    &:after {
+        z-index: 2; // 2
+
+        color: $rating-scale__graphic-color;
+    }
+}
+
+
+// Filled State for Scale Item
+// ---
+//
+// Using an extend to avoid CSS bloat
+
+%c--filled-item {
+    &:after {
+        width: 100%;
+    }
+}
+
+
+
+// Generate code for star styles
+// ===
+
+@for $i from 1 to $rating-scale__count {
+
+    $rating-scale__item: ();
+
+
+    // Loop through
+
+    @for $j from 1 through $i {
+        $rating-scale__item: append(
+            $rating-scale__item,
+            unquote("[data-rating^='#{$i}'] .c-scale__item:nth-child(#{$j})"),
+            comma
+        );
+    }
+
+
+    // Create styles for full stars
+
+    #{$rating-scale__item} {
+        @extend %c--filled-item;
+    }
+
+
+    // Create styles for non-full stars based on increment setting
+    // TODO: DRY this out too. Maybe check out http://alistapart.com/article/dry-ing-out-your-sass-mixins
+
+    $k: $rating-scale__increment;
+    @while $k < 1 {
+
+        [data-rating='#{$i + $k}'] .c-scale__item:nth-child(#{$i + 1}) {
+            &:after {
+                width: ($k*100%);
+            }
+        }
+
+        $k: $k + $rating-scale__increment;
+    }
 }

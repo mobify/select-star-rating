@@ -1,0 +1,38 @@
+// Rating Scale
+// ===
+//
+
+// Dependencies
+// ---
+
+@import 'stencil-variables/src/style';
+
+// Configurable Variables
+// ---
+
+// These values are based on the png sprite and star size
+$rating-scale__height: 12px !default;
+$rating-scale__width: 60px !default;
+
+.c-rating-scale {
+    position: relative;
+    top: 2px;
+    overflow: hidden;
+
+    display: inline-block;
+    width: $rating-scale__width;
+    height: $rating-scale__height;
+
+    background: url('/assets/sprite-review-stars@2x.png') repeat-x;
+    background-position: 0 0;
+    background-size: $rating-scale__height;
+}
+
+.c-rating-scale__stars {
+    display: block;
+    height: $rating-scale__height;
+
+    background: url('/assets/sprite-review-stars@2x.png') repeat-x;
+    background-position: 0 (-$rating-scale__height);
+    background-size: $rating-scale__height;
+}

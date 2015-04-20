@@ -1,0 +1,11 @@
+<style>
+    /* Test-specific fixture styles go here. */
+</style>
+
+{@c-spec for="Rating Scale" repository=repo}
+    {@c-spec__test describe=".c-rating-scale"}
+        {@c-spec__case expect=""}
+            {@c-rating-scale ratingTotal=50 /}
+        {/c-spec__case}
+    {/c-spec__test}
+{/c-spec}

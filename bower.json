@@ -31,7 +31,8 @@
     "spline": "~1.0.1",
     "level": "mobify/level#~0.0.1",
     "stencil-variables": "ry5n/stencil-variables",
-    "stencil-spec": "ry5n/stencil-spec#dust"
+    "stencil-spec": "ry5n/stencil-spec#dust",
+    "mobify-stencil": "~0.3.0"
   },
   "devDependencies": {
     "dustjs-linkedin": "2.6.2",

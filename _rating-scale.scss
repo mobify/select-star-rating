@@ -15,6 +15,9 @@
 $rating-scale__height: 12px !default;
 $rating-scale__width: 60px !default;
 
+// A path for the image
+$rating-scale__img-path: '/assets/sprite-review-stars@2x.png';
+
 // Rating Scale Root
 // ---
 
@@ -27,7 +30,7 @@ $rating-scale__width: 60px !default;
     width: $rating-scale__width;
     height: $rating-scale__height;
 
-    background: url('/assets/sprite-review-stars@2x.png') repeat-x;
+    background: url($rating-scale__img-path) repeat-x;
     background-position: 0 0;
     background-size: $rating-scale__height;
 }
@@ -39,7 +42,7 @@ $rating-scale__width: 60px !default;
     display: block;
     height: $rating-scale__height;
 
-    background: url('/assets/sprite-review-stars@2x.png') repeat-x;
+    background: url($rating-scale__img-path) repeat-x;
     background-position: 0 (-$rating-scale__height);
     background-size: $rating-scale__height;
 }

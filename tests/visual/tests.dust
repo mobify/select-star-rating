@@ -4,7 +4,7 @@
 
 {@c-spec for="Rating Scale" repository=repo}
     {@c-spec__test describe=".c-rating-scale"}
-        {@c-spec__case expect="It should render 4.5 out of 5 stars."}
+        {@c-spec__case expect="It should render 3.5 out of 5 stars."}
             {@c-rating-scale ratingTotal=70 /}
         {/c-spec__case}
     {/c-spec__test}

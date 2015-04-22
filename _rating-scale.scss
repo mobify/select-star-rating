@@ -2,11 +2,6 @@
 // ===
 //
 
-// Dependencies
-// ---
-
-@import 'stencil-variables/src/style';
-@import 'mobify-stencil/dist/utils/visibility/visibility';
 
 // Configurable Variables
 // ---
@@ -17,6 +12,15 @@ $rating-scale__width: 60px !default;
 
 // A path for the image
 $rating-scale__img-path: '/assets/sprite-review-stars@2x.png' !default;
+
+
+// Dependencies
+// ---
+
+@import 'stencil-variables/src/style';
+@import 'level/level';
+@import 'mobify-stencil/dist/utils/visibility/visibility';
+
 
 // Rating Scale Root
 // ---

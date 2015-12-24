@@ -1,52 +1,108 @@
-// Rating Scale
+// Rating Scale component
 // ===
+
+
+// Configurable variables
+// ---
 //
+// 1. Scales size of entire component (<1 decrease, >1 increase).
+// 2. Sets a standard size for the entire component.
+// 3. Swaps out the standard star(s) colour. Default is grey.
+// 4. Swaps out the emphasized star(s) colour. Default is yellow.
+
+$rating-item--multiplier: 1 !default;
+$rating-item--base: 16px !default;
+$rating-item--color: #ccc !default;
+$rating-item--color-filled: #f4d214 !default;
 
 
-// Configurable Variables
+// Rating Scale Root (whole thing)
 // ---
 
-// These values are based on the png sprite and star size
-$rating-scale__height: 12px !default;
-$rating-scale__width: 60px !default;
-
-// A path for the image
-$rating-scale__img-path: '/assets/sprite-review-stars@2x.png' !default;
-
-
-// Dependencies
-// ---
-
-@import 'stencil-variables/src/style';
-@import 'level/level';
-@import 'mobify-stencil/dist/utils/visibility/visibility';
-
-
-// Rating Scale Root
-// ---
-
-.c-rating-scale {
-    position: relative;
-    top: 2px;
-    overflow: hidden;
-
-    display: inline-block;
-    width: $rating-scale__width;
-    height: $rating-scale__height;
-
-    background: url($rating-scale__img-path) repeat-x;
-    background-position: 0 0;
-    background-size: $rating-scale__height;
+.c-star-ratings {
+    display: flex;
+    align-items: center;
 }
 
-// Rating Scale Stars
+
+// Rating Scale Item (individual star)
+// ---
+//
+// Note: These rating stars are built entirely with CSS. The :before and :after
+//       pseudo elements are similar to how we build CSS triangles. Each of the
+//       pseudos correspond to certain points of the star.
+
+.c-star-ratings__item,
+.c-star-ratings__item:before,
+.c-star-ratings__item:after {
+    content: "";
+
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+}
+
+
+// Rating Scale Item: top left, bottom right star points
 // ---
 
-.c-rating-scale__stars {
-    display: block;
-    height: $rating-scale__height;
+.c-star-ratings__item {
+    position: relative;
 
-    background: url($rating-scale__img-path) repeat-x;
-    background-position: 0 (-$rating-scale__height);
-    background-size: $rating-scale__height;
+    margin-right: $rating-item--multiplier*($rating-item--base/4);
+    border-width: 0 $rating-item--multiplier*10px $rating-item--multiplier*7px;
+    border-bottom-color: currentColor;
+
+    color: $rating-item--color;
+
+    transform: rotate(35deg);
+
+    &.c--filled {
+        color: $rating-item--color-filled;
+    }
+}
+
+
+// Rating Scale Item: top middle star point
+// ---
+
+.c-star-ratings__item:before {
+    position: absolute;
+    top: -$rating-item--multiplier*5px;
+    left: -$rating-item--multiplier*6px;
+
+    border-width: 0 $rating-item--multiplier*3px $rating-item--multiplier*8px;
+    border-bottom-color: currentColor;
+
+    transform: rotate(-35deg);
+}
+
+
+// Rating Scale Item: top right, bottom left star points
+// ---
+
+.c-star-ratings__item:after {
+    position: absolute;
+    top: 0;
+    left: -$rating-item--multiplier*10px;
+
+    border-width: 0 $rating-item--multiplier*10px $rating-item--multiplier*7px;
+    border-bottom-color: currentColor;
+
+    transform: rotate(-70deg);
+}
+
+
+// Rating Scale Value (number value)
+// ---
+
+.c-star-ratings__value {
+    flex: 1 1 auto;
+    padding-left: $rating-item--multiplier*($rating-item--base/4);
+
+    font-weight: bold;
+    font-size: $rating-item--multiplier*$rating-item--base;
+    line-height: 1;
 }

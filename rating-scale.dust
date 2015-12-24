@@ -1,4 +1,11 @@
-<div class="c-rating-scale">
-    <span class="c-rating-scale__stars" style="width: {ratingTotal}%;"></span>
-    <span class="u-visually-hidden">{ratingTotal}% rating</span>
+<div class="c-star-ratings" data-rating="{rating}" data-rating-max="{ratingMax}" aria-label="Rated {rating} stars out of {ratingMax}">
+
+    <span class="c-star-ratings__item c--filled"></span>
+    <span class="c-star-ratings__item c--filled"></span>
+    <span class="c-star-ratings__item c--filled"></span>
+    <span class="c-star-ratings__item"></span>
+    <span class="c-star-ratings__item"></span>
+
+    <span class="c-star-ratings__value">3/5</span>
+
 </div>

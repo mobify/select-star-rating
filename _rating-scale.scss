@@ -28,9 +28,10 @@ $rating-item--color-filled: #f4d214 !default;
 // Rating Scale Item (individual star)
 // ---
 //
-// Note: These rating stars are built entirely with CSS. The :before and :after
+// Note: These rating stars are built entirely with CSS; the :before and :after
 //       pseudo elements are similar to how we build CSS triangles. Each of the
-//       pseudos correspond to certain points of the star.
+//       pseudos correspond to certain points of the star, and are molded using
+//       border-width and rotation to be placed accordingly.
 
 .c-star-ratings__item,
 .c-star-ratings__item:before,
